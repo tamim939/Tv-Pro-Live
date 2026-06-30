@@ -15,9 +15,9 @@ export default function Splash() {
         initial={{ scale: 0.5, rotate: -10, opacity: 0 }}
         animate={{ scale: 1, rotate: 0, opacity: 1 }}
         transition={{ type: "spring", damping: 12, stiffness: 200 }}
-        className="w-24 h-24 rounded-[28px] overflow-hidden flex items-center justify-center shadow-[0_18px_55px_rgba(34,197,94,0.15)]"
+        className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-400 rounded-[24px] flex items-center justify-center shadow-[0_18px_55px_rgba(34,197,94,0.4)]"
       >
-        <img src={APP_LOGO} className="w-full h-full object-contain scale-110" alt="Logo" />
+        <Play className="w-9 h-9 text-white fill-current translate-x-0.5" />
       </motion.div>
       
       <div className="text-center">
@@ -27,7 +27,7 @@ export default function Splash() {
           transition={{ delay: 0.2 }}
           className="text-4xl font-black tracking-widest text-white uppercase"
         >
-          TV<span className="text-green-500"> PRO BD</span>
+          Tv<span className="text-green-500"> Pro Live</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 12 }}

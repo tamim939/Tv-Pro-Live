@@ -21,11 +21,7 @@ export const CUSTOM_CHANNELS: Channel[] = [
   { name: "FOX", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/26/index.m3u8", group: "Sports", isPriority: true },
   { name: "WIW", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8", group: "Sports", isPriority: true },
   { name: "BEIN SPORTS", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", group: "Sports", isPriority: true },
-  { name: "DAZN", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/5/index.m3u8", group: "Sports", isPriority: true },
-  { name: "UNITE8 SPORTS", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "http://198.195.239.50:8095/unt-s/video.m3u8", group: "Sports", isPriority: true },
-  { name: "FOX HD", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "http://84.17.50.102/fox/index.m3u8", group: "Sports", isPriority: true },
-  { name: "beIN Sports", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://edge22.776740.ir.cdn.ir/hls2/sport.m3u8", group: "Sports", isPriority: true },
-  { name: "sport.tv (ISO)", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/33/index.m3u8", group: "Sports", isPriority: true }
+  { name: "beIN Sports", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://edge22.776740.ir.cdn.ir/hls2/sport.m3u8", group: "Sports", isPriority: true }
 ];
 
 export const BLACKLIST_CHANNELS = [

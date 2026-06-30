@@ -1,5 +1,5 @@
 {
-  "name": "TV PRO BD",
+  "name": "Tv Pro Live",
   "description": "Stream live sports and TV channels with a premium interface and real-time visitor tracking.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

@@ -124,11 +124,11 @@ export default function App() {
       <header className="sticky top-0 z-[100] bg-[#080c14]/80 backdrop-blur-2xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-lg shadow-green-500/10">
-              <img src={APP_LOGO} className="w-full h-full object-contain scale-110" alt="Logo" />
+            <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-400 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/20">
+              <Tv className="w-5 h-5 text-white fill-current" />
             </div>
-            <h1 className="text-2xl font-black tracking-widest uppercase hidden sm:block">
-              TV<span className="text-green-500"> PRO BD</span>
+            <h1 className="text-xl sm:text-2xl font-black tracking-widest uppercase">
+              Tv<span className="text-green-500"> Pro Live</span>
             </h1>
           </div>
 
@@ -361,10 +361,10 @@ export default function App() {
       <footer className="border-t border-white/5 py-12 bg-black/20">
         <div className="max-w-7xl mx-auto px-4 flex flex-col items-center text-center gap-8">
           <div className="flex items-center gap-3 grayscale opacity-30">
-            <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center">
-              <img src={APP_LOGO} className="w-full h-full object-contain scale-110" alt="Logo" />
+            <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
+              <Tv className="w-4 h-4 text-black fill-current" />
             </div>
-            <h2 className="text-lg font-black tracking-widest uppercase text-gray-500">TV PRO BD</h2>
+            <h2 className="text-lg font-black tracking-widest uppercase text-gray-500">Tv Pro Live</h2>
           </div>
 
           <div className="grid grid-cols-2 gap-8 md:gap-16">
@@ -423,7 +423,7 @@ export default function App() {
                   { icon: FileText, label: "Xtream Codes", onClick: () => { setOverlayConfig({ type: "xtream", url: XTREAM_URL }); setShowMenu(false); } },
                   { icon: Download, label: "M3U Playlists", onClick: () => { setOverlayConfig({ type: "normal", url: NORMAL_URL }); setShowMenu(false); } },
                   { icon: MessageCircle, label: "Telegram Support", href: TELEGRAM_URL },
-                  { icon: Share2, label: "Share App", onClick: () => { if (navigator.share) navigator.share({ title: "TV PRO BD", url: window.location.origin }); } },
+                  { icon: Share2, label: "Share App", onClick: () => { if (navigator.share) navigator.share({ title: "Tv Pro Live", url: window.location.origin }); } },
                   { icon: Info, label: "About", href: "#" }
                 ].map((item, i) => (
                   item.href ? (
@@ -456,7 +456,7 @@ export default function App() {
 
               <div className="p-6 border-t border-white/5">
                 <p className="text-[10px] font-bold text-gray-600 text-center uppercase tracking-widest">
-                  TV PRO BD v1.0.0
+                  Tv Pro Live v1.0.0
                 </p>
               </div>
             </motion.div>
