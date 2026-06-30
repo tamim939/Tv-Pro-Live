@@ -23,6 +23,10 @@ export default function App() {
 
   // Load Data
   useEffect(() => {
+    // Production protections
+    const handleContextMenu = (e: MouseEvent) => e.preventDefault();
+    document.addEventListener("contextmenu", handleContextMenu);
+
     const loadData = async () => {
       try {
         const channelPromises = M3U_URLS.map(async (url) => {
@@ -79,6 +83,10 @@ export default function App() {
     };
 
     loadData();
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+    };
   }, []);
 
   const categories = useMemo(() => {

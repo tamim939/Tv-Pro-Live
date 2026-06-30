@@ -62,6 +62,10 @@ export default function Player({ channel, onPrev, onNext }: PlayerProps) {
       const hls = new Hls({
         enableWorker: true,
         lowLatencyMode: true,
+        liveSyncDurationCount: 3,
+        liveMaxLatencyDurationCount: 5,
+        manifestLoadingMaxRetry: 10,
+        levelLoadingMaxRetry: 10,
       });
       hls.loadSource(url);
       hls.attachMedia(video);
@@ -169,8 +173,12 @@ export default function Player({ channel, onPrev, onNext }: PlayerProps) {
   const handleInteraction = () => {
     setShowControls(true);
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-    controlsTimeoutRef.current = setTimeout(() => setShowControls(false), 3000);
+    controlsTimeoutRef.current = setTimeout(() => setShowControls(false), 2000);
   };
+
+  useEffect(() => {
+    handleInteraction();
+  }, [channel]);
 
   return (
     <div 
