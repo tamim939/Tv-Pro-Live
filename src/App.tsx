@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { Search, Grid, List, Heart, Tv, Radio, Globe, Menu, X, Share2, Info, MessageCircle, ExternalLink, Play, FileText, Download } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Channel } from "./types";
-import { M3U_URLS, ALLOWED_CHANNELS, CUSTOM_CHANNELS, BLACKLIST_CHANNELS, XTREAM_URL, NORMAL_URL, APP_LOGO, TELEGRAM_URL } from "./config";
+import { M3U_URLS, ALLOWED_CHANNELS, CUSTOM_CHANNELS, BLACKLIST_CHANNELS, XTREAM_URL, NORMAL_URL, APP_LOGO, TELEGRAM_URL, AD_LINKS } from "./config";
 import { parseM3U, normalizeGroup, channelToSlug } from "./utils";
 import Splash from "./components/Splash";
 import Player from "./components/Player";
@@ -20,6 +20,7 @@ export default function App() {
   const [favorites, setFavorites] = useState<string[]>(() => JSON.parse(localStorage.getItem("lz_fav") || "[]"));
   const [showMenu, setShowMenu] = useState(false);
   const [overlayConfig, setOverlayConfig] = useState<{ type: "xtream" | "normal"; url: string } | null>(null);
+  const [clickedChannels, setClickedChannels] = useState<Set<string>>(new Set());
 
   // Load Data
   useEffect(() => {
@@ -71,7 +72,12 @@ export default function App() {
         if (allChannels.length > 0) {
           const hash = decodeURIComponent(window.location.hash.slice(1)).toLowerCase();
           const found = allChannels.find(c => channelToSlug(c.name) === hash);
-          setCurrentChannel(found || allChannels[0]);
+          const initialChannel = found || allChannels[0];
+          
+          // Pre-mark as clicked so auto-play works without ad on load
+          const newClicked = new Set([initialChannel.name]);
+          setClickedChannels(newClicked);
+          setCurrentChannel(initialChannel);
         }
 
       } catch (e) {
@@ -116,7 +122,17 @@ export default function App() {
     localStorage.setItem("lz_fav", JSON.stringify(newFavs));
   };
 
-  const handleChannelSelect = (ch: Channel) => {
+  const handleChannelSelect = (ch: Channel, bypassAd = false) => {
+    if (!bypassAd && !clickedChannels.has(ch.name)) {
+      const randomAd = AD_LINKS[Math.floor(Math.random() * AD_LINKS.length)];
+      window.open(randomAd, "_blank");
+      
+      const newClicked = new Set(clickedChannels);
+      newClicked.add(ch.name);
+      setClickedChannels(newClicked);
+      return;
+    }
+
     setCurrentChannel(ch);
     window.location.hash = channelToSlug(ch.name);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -172,11 +188,11 @@ export default function App() {
             channel={currentChannel} 
             onPrev={() => {
               const idx = channels.indexOf(currentChannel!);
-              if (idx > 0) handleChannelSelect(channels[idx - 1]);
+              if (idx > 0) handleChannelSelect(channels[idx - 1], true);
             }}
             onNext={() => {
               const idx = channels.indexOf(currentChannel!);
-              if (idx < channels.length - 1) handleChannelSelect(channels[idx + 1]);
+              if (idx < channels.length - 1) handleChannelSelect(channels[idx + 1], true);
             }}
           />
           

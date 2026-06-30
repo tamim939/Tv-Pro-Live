@@ -18,11 +18,18 @@ export const ALLOWED_CHANNELS = [
 ];
 
 export const CUSTOM_CHANNELS: Channel[] = [
+  { name: "Somoy TV for FIFA", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8", group: "Sports", isPriority: true },
   { name: "FOX", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/26/index.m3u8", group: "Sports", isPriority: true },
   { name: "WIW", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8", group: "Sports", isPriority: true },
   { name: "BEIN SPORTS", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", group: "Sports", isPriority: true },
-  { name: "beIN Sports", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://edge22.776740.ir.cdn.ir/hls2/sport.m3u8", group: "Sports", isPriority: true },
-  { name: "Somoy TV for FIFA", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8", group: "Sports", isPriority: true }
+  { name: "beIN Sports", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://edge22.776740.ir.cdn.ir/hls2/sport.m3u8", group: "Sports", isPriority: true }
+];
+
+export const AD_LINKS = [
+  "https://www.effectivecpmnetwork.com/dyyctbfkq?key=c298d4bf82cd56f091274372b74742b2",
+  "https://www.effectivecpmnetwork.com/dfxs2nu1wq?key=4d1218daa319186cb7d95e989135779c",
+  "https://www.effectivecpmnetwork.com/ss7nmu0apx?key=a5ea4453215928f238b0b35845fef01f",
+  "https://www.effectivecpmnetwork.com/c8w3rysv?key=4345f99e5ef6faca4564bb3e54a382ea"
 ];
 
 export const BLACKLIST_CHANNELS = [
