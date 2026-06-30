@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { Search, Grid, List, Heart, Tv, Radio, Globe, Menu, X, Share2, Info, MessageCircle, ExternalLink, Play, FileText, Download } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Channel } from "./types";
-import { M3U_URLS, ALLOWED_CHANNELS, CUSTOM_CHANNELS, BLACKLIST_CHANNELS, XTREAM_URL, NORMAL_URL, APP_LOGO, TELEGRAM_URL, AD_LINKS } from "./config";
+import { M3U_URLS, ALLOWED_CHANNELS, CUSTOM_CHANNELS, BLACKLIST_CHANNELS, XTREAM_URL, NORMAL_URL, APP_LOGO, TELEGRAM_URL, AD_LINKS, FACEBOOK_URL } from "./config";
 import { parseM3U, normalizeGroup, channelToSlug } from "./utils";
 import Splash from "./components/Splash";
 import Player from "./components/Player";
@@ -57,22 +57,40 @@ export default function App() {
 
         let allChannels = [...filteredCustom, ...allChannelsRaw.flat()];
 
-        // Unique channels
-        const seen = new Set();
-        allChannels = allChannels.filter(c => {
-          const key = `${c.name}|${c.url}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
+        // Unique channels by name to avoid duplicates like T Sports appearing twice
+        const finalChannels: Channel[] = [];
+        const seenNames = new Set();
+        
+        // Find T Sports and move it to the beginning of the list if it exists
+        // We look for it from the M3U (bottom part of allChannels) first as requested
+        let tSports: Channel | null = null;
+        for (let i = allChannels.length - 1; i >= 0; i--) {
+          if (allChannels[i].name.toLowerCase() === "t sports") {
+            tSports = allChannels.splice(i, 1)[0];
+            break;
+          }
+        }
+        
+        if (tSports) {
+          finalChannels.push(tSports);
+          seenNames.add("t sports");
+        }
+
+        allChannels.forEach(c => {
+          const lower = c.name.toLowerCase();
+          if (!seenNames.has(lower)) {
+            finalChannels.push(c);
+            seenNames.add(lower);
+          }
         });
 
-        setChannels(allChannels);
+        setChannels(finalChannels);
 
         // Set initial channel
-        if (allChannels.length > 0) {
+        if (finalChannels.length > 0) {
           const hash = decodeURIComponent(window.location.hash.slice(1)).toLowerCase();
-          const found = allChannels.find(c => channelToSlug(c.name) === hash);
-          const initialChannel = found || allChannels[0];
+          const found = finalChannels.find(c => channelToSlug(c.name) === hash);
+          const initialChannel = found || finalChannels[0];
           
           // Pre-mark as clicked so auto-play works without ad on load
           const newClicked = new Set([initialChannel.name]);
@@ -391,16 +409,40 @@ export default function App() {
             <h2 className="text-lg font-black tracking-widest uppercase text-gray-500">Tv Pro Live</h2>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 md:gap-16">
-            {[
-              { label: "Channels", value: channels.length },
-              { label: "Uptime", value: "99.9%" }
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col gap-1">
-                <span className="text-2xl font-black text-white">{stat.value}</span>
-                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{stat.label}</span>
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-gray-500 text-[10px] uppercase tracking-[0.3em] font-bold">Developed by</span>
+            <span className="text-white text-2xl font-black tracking-[0.1em] uppercase">Tamim Hasan</span>
+          </div>
+
+          <div className="flex flex-wrap justify-center items-center gap-4">
+            <a 
+              href={FACEBOOK_URL} 
+              target="_blank" 
+              rel="noreferrer"
+              className="px-6 py-3 bg-white/5 border border-white/5 rounded-2xl hover:bg-white/10 hover:border-white/10 transition-all flex items-center gap-4 group"
+            >
+              <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                <Globe className="w-5 h-5 text-blue-500" />
               </div>
-            ))}
+              <div className="flex flex-col items-start text-left">
+                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Follow on</span>
+                <span className="text-xs font-black text-gray-200 uppercase tracking-wider">Facebook</span>
+              </div>
+            </a>
+            <a 
+              href={TELEGRAM_URL} 
+              target="_blank" 
+              rel="noreferrer"
+              className="px-6 py-3 bg-white/5 border border-white/5 rounded-2xl hover:bg-white/10 hover:border-white/10 transition-all flex items-center gap-4 group"
+            >
+              <div className="w-10 h-10 bg-blue-400/10 rounded-xl flex items-center justify-center group-hover:bg-blue-400/20 transition-colors">
+                <MessageCircle className="w-5 h-5 text-blue-400" />
+              </div>
+              <div className="flex flex-col items-start text-left">
+                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Join our</span>
+                <span className="text-xs font-black text-gray-200 uppercase tracking-wider">Telegram</span>
+              </div>
+            </a>
           </div>
 
           <p className="text-[10px] leading-relaxed text-gray-600 max-w-sm uppercase tracking-wider font-bold">

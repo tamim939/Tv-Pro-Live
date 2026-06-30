@@ -18,12 +18,10 @@ export const ALLOWED_CHANNELS = [
 ];
 
 export const CUSTOM_CHANNELS: Channel[] = [
-  { name: "T Sports", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://edge22.776740.ir.cdn.ir/hls2/sport.m3u8", group: "Sports", isPriority: true },
   { name: "Somoy TV for FIFA", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8", group: "Sports", isPriority: true },
   { name: "FOX", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/26/index.m3u8", group: "Sports", isPriority: true },
   { name: "WIW", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8", group: "Sports", isPriority: true },
-  { name: "BEIN SPORTS", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", group: "Sports", isPriority: true },
-  { name: "beIN Sports", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://edge22.776740.ir.cdn.ir/hls2/sport.m3u8", group: "Sports", isPriority: true }
+  { name: "BEIN SPORTS", logo: "https://i.postimg.cc/pVY2y4s3/images-(7).jpg", url: "https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8", group: "Sports", isPriority: true }
 ];
 
 export const AD_LINKS = [
@@ -54,3 +52,4 @@ export const XTREAM_URL = 'https://raw.githubusercontent.com/MRM3UK/New-try/refs
 export const NORMAL_URL = 'https://raw.githubusercontent.com/MRM3UK/New-try/refs/heads/main/normal.txt';
 export const APP_LOGO = "https://i.postimg.cc/YqFXZcTP/no-bg-(7).png";
 export const TELEGRAM_URL = "https://t.me/Tamim_Hasan10";
+export const FACEBOOK_URL = "https://facebook.com"; // User can update this
